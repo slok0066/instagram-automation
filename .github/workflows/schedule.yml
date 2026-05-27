@@ -67,7 +67,7 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content": "🟢 **QuizTheCodeBot Success!**\nYour coding reel has been successfully generated and published directly to Instagram! 🚀\n*(Published at '$(date +'%Y-%m-%d %H:%M:%S')' IST)*"}' \
+               -d "{\"content\": \"🟢 **QuizTheCodeBot Success!**\nYour coding reel has been successfully generated and published directly to Instagram! 🚀\n*(Published at $(date +'%Y-%m-%d %H:%M:%S') UTC)*\"}" \
                ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Send Discord Notification on Failure
@@ -75,6 +75,7 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content": "🔴 **QuizTheCodeBot Failed!**\nThe auto-posting pipeline failed during execution. Please check your GitHub Actions logs for details:\nhttps://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+               -d "{\"content\": \"🔴 **QuizTheCodeBot Failed!**\nThe auto-posting pipeline failed during execution. Please check your GitHub Actions logs for details:\nhttps://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
                ${{ secrets.DISCORD_WEBHOOK }}
+
 
