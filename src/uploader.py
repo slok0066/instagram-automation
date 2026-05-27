@@ -32,10 +32,10 @@ def upload_to_cloudinary(video_path):
     )
     
     filename = os.path.basename(video_path)
-    print(f"[*] Starting chunked uploading of {filename} to Cloudinary...")
+    print(f"[*] Starting upload of {filename} to Cloudinary...")
     try:
-        # upload_large handles larger files and high network variance smoothly
-        response = cloudinary.uploader.upload_large(
+        # Standard upload is extremely reliable and supports files up to 100MB natively
+        response = cloudinary.uploader.upload(
             video_path,
             resource_type="video",
             folder="quiz_the_code_reels"
