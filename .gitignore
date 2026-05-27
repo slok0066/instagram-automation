@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Local database / tracking states
+# Note: DO NOT ignore used_questions.json as it needs to be committed to track progress!
+
+# Output / generated assets
+output/
+temp_audio.m4a
+temp_frame.png
+*.mp4
+*.png
+# Allow specific asset templates to be tracked by Git
+!assets/
+!assets/backgrounds/
+!assets/songs/
+!assets/fonts/
+!assets/watermark_cover.png
+!assets/backgrounds/*.mp4
+!assets/songs/*.mp3
+!assets/fonts/*.ttf
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
