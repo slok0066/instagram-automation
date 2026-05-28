@@ -1,16 +1,8 @@
 name: QuizTheCodeBot Automation
 
 on:
-  schedule:
-    # GitHub Actions cron schedules use UTC time.
-    # Convert your local times to UTC. (Currently set for Indian Standard Time IST, UTC+5:30):
-    # - 09:00 AM IST = 03:30 AM UTC
-    # - 01:00 PM IST = 07:30 AM UTC
-    # - 08:00 PM IST = 02:30 PM UTC
-    - cron: '30 3 * * *'
-    - cron: '30 7 * * *'
-    - cron: '30 14 * * *'
-  workflow_dispatch: # Allows you to manually trigger the run from the GitHub Actions tab anytime!
+  # Native GitHub schedule is disabled in favor of Cron-Job.org for 100% precise, on-the-dot triggers.
+  workflow_dispatch: # Allows manual trigger and API trigger from Cron-Job.org!
 
 # Give the runner permission to commit and push changes back to the repository
 permissions:
