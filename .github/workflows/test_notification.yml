@@ -1,0 +1,17 @@
+name: Test Discord Notification
+
+on:
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions dashboard
+
+jobs:
+  test-notification:
+    name: Send Test Notification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Test Notification
+        run: |
+          curl -f -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"content\": \"🧪 **QuizTheCodeBot Webhook Test!**\nIf you are reading this, your Discord notification integration is working flawlessly! 🎉\n*(Tested at $(date +'%Y-%m-%d %I:%M:%S %p') UTC)*\"}" \
+               ${{ secrets.DISCORD_WEBHOOK }}
