@@ -145,14 +145,17 @@ def generate_video(question_data, output_video_path):
             else:
                 clip = clip.set_audio(audio_clip)
             
-        print(f"[*] Exporting final optimized MP4 to: {output_video_path}...")
+        print(f"[*] Exporting final optimized high-quality MP4 to: {output_video_path}...")
         clip.write_videofile(
             output_video_path,
             fps=24,
             codec="libx264",
+            bitrate="15000k",
+            preset="medium",
             audio_codec="aac" if audio_clip else None,
             temp_audiofile=os.path.join("output", "temp_audio.m4a") if audio_clip else None,
             remove_temp=True,
+            ffmpeg_params=["-crf", "18", "-pix_fmt", "yuv420p"],
             logger=None  # Cleans up MoviePy verbose output logs
         )
         
