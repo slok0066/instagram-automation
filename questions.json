@@ -457,716 +457,716 @@
   {
     "id": 36,
     "language": "C++",
-    "question": "What is printed by name hiding?",
-    "code": "struct A { void f(int) { std::cout << \"A\"; } };\nstruct B : A { void f(double) { std::cout << \"B\"; } };\nB b;\nb.f(1);",
+    "question": "What does this print?",
+    "code": "int x = 5;\nint* p = &x;\n*p = 10;\nstd::cout << x;",
     "options": [
-      "A",
-      "B",
-      "AB",
+      "5",
+      "10",
+      "Address",
       "Compilation Error"
     ],
-    "answer": "B"
+    "answer": "10"
   },
   {
     "id": 37,
     "language": "Python",
-    "question": "What is the method resolution output?",
-    "code": "class A:\n    def who(self): return 'A'\nclass B(A):\n    def who(self): return 'B'\nclass C(A):\n    def who(self): return 'C'\nclass D(B, C):\n    pass\nprint(D().who())",
+    "question": "What is printed?",
+    "code": "x = [1, 2, 3]\ny = x\nx.append(4)\nprint(len(y))",
     "options": [
-      "A",
-      "B",
-      "C",
-      "TypeError"
+      "3",
+      "4",
+      "Error",
+      "None"
     ],
-    "answer": "B"
+    "answer": "4"
   },
   {
     "id": 38,
     "language": "Java",
-    "question": "What happens with this generic assignment?",
-    "code": "List<Integer> ints = new ArrayList<>();\nList<Number> nums = ints;",
+    "question": "What is printed?",
+    "code": "String s = \"hi\";\nSystem.out.println(s.length());",
     "options": [
-      "Compiles normally",
-      "Compilation Error",
-      "ClassCastException",
-      "ArrayStoreException"
+      "2",
+      "3",
+      "Error",
+      "0"
     ],
-    "answer": "Compilation Error"
+    "answer": "2"
   },
   {
     "id": 39,
     "language": "C++",
-    "question": "What is printed by this structured binding?",
-    "code": "std::pair<int, int> p{2, 5};\nauto [a, b] = p;\na = 9;\nstd::cout << p.first << \" \" << a;",
+    "question": "What is printed?",
+    "code": "std::vector<int> v = {1};\nv.push_back(2);\nstd::cout << v.size();",
     "options": [
-      "2 9",
-      "9 9",
-      "2 2",
-      "Compilation Error"
+      "1",
+      "2",
+      "Error",
+      "Depends"
     ],
-    "answer": "2 9"
+    "answer": "2"
   },
   {
     "id": 40,
     "language": "Python",
-    "question": "What is the final nested list?",
-    "code": "grid = [[0] * 2] * 3\ngrid[0][1] = 9\nprint(grid)",
+    "question": "What is printed?",
+    "code": "x = 1\ny = x\nx = 2\nprint(y)",
     "options": [
-      "[[0, 9], [0, 0], [0, 0]]",
-      "[[0, 9], [0, 9], [0, 9]]",
-      "[[9, 0], [9, 0], [9, 0]]",
-      "TypeError"
+      "1",
+      "2",
+      "Error",
+      "None"
     ],
-    "answer": "[[0, 9], [0, 9], [0, 9]]"
+    "answer": "1"
   },
   {
     "id": 41,
     "language": "Java",
-    "question": "What is printed by dynamic dispatch and field hiding?",
-    "code": "class A { int x = 1; int get() { return x; } }\nclass B extends A { int x = 2; int get() { return x; } }\nA obj = new B();\nSystem.out.println(obj.x + \" \" + obj.get());",
+    "question": "What is printed?",
+    "code": "int x = 1;\nint y = x;\nx = 2;\nSystem.out.println(y);",
     "options": [
-      "1 1",
-      "1 2",
-      "2 1",
-      "2 2"
+      "1",
+      "2",
+      "Error",
+      "0"
     ],
-    "answer": "1 2"
+    "answer": "1"
   },
   {
     "id": 42,
     "language": "C++",
-    "question": "What is printed by this priority_queue?",
-    "code": "std::priority_queue<int> pq;\npq.push(1); pq.push(5); pq.push(3);\nstd::cout << pq.top();",
+    "question": "What is printed?",
+    "code": "int a = 0;\nif (a++)\n    std::cout << \"yes\";\nelse\n    std::cout << \"no\";",
     "options": [
-      "1",
-      "3",
-      "5",
-      "Compilation Error"
+      "yes",
+      "no",
+      "Error",
+      "Depends"
     ],
-    "answer": "5"
+    "answer": "no"
   },
   {
     "id": 43,
     "language": "Python",
-    "question": "What does this comprehension print?",
-    "code": "x = 5\nvals = [x for x in range(3)]\nprint(x, vals)",
+    "question": "What is printed?",
+    "code": "def f(x=[]):\n    x.append(1)\n    return x\nprint(f())\nprint(f())",
     "options": [
-      "2 [0, 1, 2]",
-      "5 [0, 1, 2]",
-      "5 [5, 5, 5]",
-      "NameError"
+      "[1]\\n[1]",
+      "[1]\\n[1, 1]",
+      "Error",
+      "None"
     ],
-    "answer": "5 [0, 1, 2]"
+    "answer": "[1]\\n[1, 1]"
   },
   {
     "id": 44,
     "language": "Java",
-    "question": "What is printed by this null unboxing?",
-    "code": "Integer x = null;\nint y = x;\nSystem.out.println(y);",
-    "options": [
-      "0",
-      "null",
-      "NullPointerException",
-      "Compilation Error"
-    ],
-    "answer": "NullPointerException"
-  },
-  {
-    "id": 45,
-    "language": "C++",
-    "question": "What is printed by map operator[]?",
-    "code": "std::map<std::string, int> m;\nstd::cout << m[\"x\"] << \" \" << m.size();",
-    "options": [
-      "0 0",
-      "0 1",
-      "1 1",
-      "Compilation Error"
-    ],
-    "answer": "0 1"
-  },
-  {
-    "id": 46,
-    "language": "Python",
-    "question": "What does this dictionary print?",
-    "code": "d = {True: 'yes', 1: 'one', 1.0: 'float'}\nprint(d)",
-    "options": [
-      "{True: 'yes', 1: 'one', 1.0: 'float'}",
-      "{True: 'float'}",
-      "{1.0: 'float'}",
-      "TypeError"
-    ],
-    "answer": "{True: 'float'}"
-  },
-  {
-    "id": 47,
-    "language": "Java",
-    "question": "What exception appears at runtime?",
-    "code": "Object[] arr = new String[2];\narr[0] = 42;",
-    "options": [
-      "ClassCastException",
-      "ArrayStoreException",
-      "NullPointerException",
-      "No exception"
-    ],
-    "answer": "ArrayStoreException"
-  },
-  {
-    "id": 48,
-    "language": "C++",
-    "question": "What is printed by structured binding by reference?",
-    "code": "std::pair<int, int> p{2, 5};\nauto& [a, b] = p;\na = 9;\nstd::cout << p.first << \" \" << a;",
-    "options": [
-      "2 9",
-      "9 9",
-      "2 2",
-      "Compilation Error"
-    ],
-    "answer": "9 9"
-  },
-  {
-    "id": 49,
-    "language": "Python",
-    "question": "What is printed by the try/finally return?",
-    "code": "def f():\n    try:\n        return 'try'\n    finally:\n        return 'finally'\nprint(f())",
-    "options": [
-      "try",
-      "finally",
-      "try finally",
-      "SyntaxError"
-    ],
-    "answer": "finally"
-  },
-  {
-    "id": 50,
-    "language": "Java",
-    "question": "What is printed by equals without overriding?",
-    "code": "class Point { int x; Point(int x) { this.x = x; } }\nSystem.out.println(new Point(1).equals(new Point(1)));",
+    "question": "What is printed?",
+    "code": "Integer x = 128;\nInteger y = 128;\nSystem.out.println(x == y);",
     "options": [
       "true",
       "false",
-      "Compilation Error",
-      "NullPointerException"
+      "Error",
+      "Depends"
     ],
     "answer": "false"
   },
   {
-    "id": 51,
+    "id": 45,
     "language": "C++",
-    "question": "What is printed by virtual dispatch in a constructor?",
-    "code": "struct A {\n  A() { std::cout << f(); }\n  virtual int f() { return 1; }\n};\nstruct B : A {\n  int f() override { return 2; }\n};\nB b;",
+    "question": "What is printed?",
+    "code": "int x = 1;\nauto f = [x]() { return x * 2; };\nx = 2;\nstd::cout << f();",
+    "options": [
+      "2",
+      "4",
+      "Error",
+      "Depends"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 46,
+    "language": "Python",
+    "question": "What is printed?",
+    "code": "x = 1\nif True:\n    x = 2\nprint(x)",
     "options": [
       "1",
       "2",
-      "12",
-      "Undefined behavior"
+      "Error",
+      "None"
     ],
-    "answer": "1"
+    "answer": "2"
+  },
+  {
+    "id": 47,
+    "language": "Java",
+    "question": "What is printed?",
+    "code": "String a = \"hello\";\nString b = new String(\"hello\");\nSystem.out.println(a == b);",
+    "options": [
+      "true",
+      "false",
+      "Error",
+      "Depends"
+    ],
+    "answer": "false"
+  },
+  {
+    "id": 48,
+    "language": "C++",
+    "question": "What is printed?",
+    "code": "int arr[] = {1, 2, 3};\nstd::cout << arr[1];",
+    "options": [
+      "1",
+      "2",
+      "Error",
+      "Depends"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 49,
+    "language": "Python",
+    "question": "What is printed?",
+    "code": "a = 1\nb = 2\na, b = b, a\nprint(a, b)",
+    "options": [
+      "1 2",
+      "2 1",
+      "Error",
+      "None"
+    ],
+    "answer": "2 1"
+  },
+  {
+    "id": 50,
+    "language": "Java",
+    "question": "What is printed?",
+    "code": "int x = 5;\nSystem.out.println(x++);",
+    "options": [
+      "5",
+      "6",
+      "Error",
+      "Depends"
+    ],
+    "answer": "5"
+  },
+  {
+    "id": 51,
+    "language": "C++",
+    "question": "What is printed?",
+    "code": "std::string s = \"ab\";\ns += \"c\";\nstd::cout << s;",
+    "options": [
+      "abc",
+      "ab",
+      "Error",
+      "Depends"
+    ],
+    "answer": "abc"
   },
   {
     "id": 52,
     "language": "Python",
-    "question": "What gets printed after slice assignment?",
-    "code": "a = [1, 2, 3, 4]\na[1:3] = [9, 8, 7]\nprint(a)",
+    "question": "What is printed?",
+    "code": "print(True and False)",
     "options": [
-      "[1, 9, 8, 7, 4]",
-      "[1, 9, 8, 4]",
-      "[1, [9, 8, 7], 4]",
-      "ValueError"
+      "True",
+      "False",
+      "Error",
+      "None"
     ],
-    "answer": "[1, 9, 8, 7, 4]"
+    "answer": "False"
   },
   {
     "id": 53,
     "language": "Java",
-    "question": "What does this comparison print?",
-    "code": "Double d = Double.NaN;\nSystem.out.println(d.equals(Double.NaN) + \" \" + (d == Double.NaN));",
+    "question": "What is printed?",
+    "code": "System.out.println(1 + 2 + \"3\");",
     "options": [
-      "true true",
-      "true false",
-      "false true",
-      "false false"
+      "33",
+      "123",
+      "6",
+      "Error"
     ],
-    "answer": "true false"
+    "answer": "33"
   },
   {
     "id": 54,
     "language": "C++",
-    "question": "What does this dynamic_cast print?",
-    "code": "struct A { virtual ~A() = default; };\nstruct B : A {};\nA* p = new A;\nstd::cout << (dynamic_cast<B*>(p) == nullptr);",
+    "question": "What is printed?",
+    "code": "int x = 5;\nstd::cout << (x % 2 == 0 ? \"even\" : \"odd\");",
     "options": [
-      "0",
-      "1",
-      "Compilation Error",
-      "Undefined behavior"
+      "even",
+      "odd",
+      "Error",
+      "Depends"
     ],
-    "answer": "1"
+    "answer": "odd"
   },
   {
     "id": 55,
     "language": "Python",
-    "question": "What is printed by this generator example?",
-    "code": "g = (x * 2 for x in range(3))\nprint(list(g))\nprint(list(g))",
+    "question": "What is printed?",
+    "code": "print(type(1.0))",
     "options": [
-      "[0, 2, 4]\\n[0, 2, 4]",
-      "[0, 2, 4]\\n[]",
-      "[]\\n[]",
-      "TypeError"
+      "<class 'int'>",
+      "<class 'float'>",
+      "Error",
+      "None"
     ],
-    "answer": "[0, 2, 4]\\n[]"
+    "answer": "<class 'float'>"
   },
   {
     "id": 56,
     "language": "Java",
-    "question": "What does this interface conflict produce?",
-    "code": "interface A { default void f() {} }\ninterface B { default void f() {} }\nclass C implements A, B {}",
+    "question": "What is printed?",
+    "code": "String s = \"\";\nSystem.out.println(s.isEmpty());",
     "options": [
-      "Compiles and uses A.f",
-      "Compiles and uses B.f",
-      "Compilation Error",
-      "Runtime Error"
+      "true",
+      "false",
+      "Error",
+      "Depends"
     ],
-    "answer": "Compilation Error"
+    "answer": "true"
   },
   {
     "id": 57,
     "language": "C++",
-    "question": "What is printed by vector size and capacity logic?",
-    "code": "std::vector<int> v;\nv.reserve(10);\nv.push_back(1);\nstd::cout << v.size();",
+    "question": "What is printed?",
+    "code": "int x = 010;\nstd::cout << x;",
     "options": [
-      "0",
-      "1",
       "10",
-      "Compilation Error"
+      "8",
+      "Error",
+      "Depends"
     ],
-    "answer": "1"
+    "answer": "8"
   },
   {
     "id": 58,
     "language": "Python",
-    "question": "What happens when hashing this tuple?",
-    "code": "x = (1, [2, 3])\nprint(hash(x))",
+    "question": "What is printed?",
+    "code": "print(0.1 + 0.2 == 0.3)",
     "options": [
-      "A stable integer",
-      "0",
-      "TypeError",
-      "AttributeError"
+      "True",
+      "False",
+      "Error",
+      "None"
     ],
-    "answer": "TypeError"
+    "answer": "False"
   },
   {
     "id": 59,
     "language": "Java",
-    "question": "What is printed by this lambda capture rule?",
-    "code": "int x = 1;\nRunnable r = () -> System.out.println(x);\nx = 2;",
+    "question": "What is printed?",
+    "code": "System.out.println(Math.round(1.5));",
     "options": [
       "1",
       "2",
-      "Compilation Error",
-      "Runtime Error"
+      "Error",
+      "Depends"
     ],
-    "answer": "Compilation Error"
+    "answer": "2"
   },
   {
     "id": 60,
     "language": "C++",
-    "question": "Which overload is selected for literal 0?",
-    "code": "void f(int) { std::cout << \"int\"; }\nvoid f(char*) { std::cout << \"ptr\"; }\nf(0);",
+    "question": "What is printed?",
+    "code": "char c = 65;\nstd::cout << c;",
     "options": [
-      "int",
-      "ptr",
-      "Compilation Error",
-      "Undefined behavior"
+      "A",
+      "65",
+      "Error",
+      "Depends"
     ],
-    "answer": "int"
+    "answer": "A"
   },
   {
     "id": 61,
     "language": "Python",
-    "question": "What does this closure code print?",
-    "code": "funcs = []\nfor i in range(3):\n    funcs.append(lambda: i)\nprint([f() for f in funcs])",
+    "question": "What is printed?",
+    "code": "print(3 * 'ab')",
     "options": [
-      "[0, 1, 2]",
-      "[2, 2, 2]",
-      "[3, 3, 3]",
-      "NameError"
+      "ababab",
+      "Error",
+      "None",
+      "Depends"
     ],
-    "answer": "[2, 2, 2]"
+    "answer": "ababab"
   },
   {
     "id": 62,
     "language": "Java",
-    "question": "What is printed by constructor dispatch?",
-    "code": "class A {\n  A() { System.out.print(get()); }\n  int get() { return 1; }\n}\nclass B extends A {\n  int x = 2;\n  int get() { return x; }\n}\nnew B();",
+    "question": "What is printed?",
+    "code": "System.out.println(\"5\" + 2);",
     "options": [
-      "1",
-      "2",
-      "0",
-      "Compilation Error"
+      "52",
+      "7",
+      "Error",
+      "Depends"
     ],
-    "answer": "0"
+    "answer": "52"
   },
   {
     "id": 63,
     "language": "C++",
-    "question": "What is printed by the const overload?",
-    "code": "struct X {\n  void f() { std::cout << \"nonconst\"; }\n  void f() const { std::cout << \"const\"; }\n};\nconst X x;\nx.f();",
+    "question": "What is printed?",
+    "code": "bool b = !(1 > 2);\nstd::cout << b;",
     "options": [
-      "nonconst",
-      "const",
-      "Both",
-      "Compilation Error"
+      "1",
+      "0",
+      "Error",
+      "Depends"
     ],
-    "answer": "const"
+    "answer": "1"
   },
   {
     "id": 64,
     "language": "Python",
-    "question": "What does this boolean protocol example print?",
-    "code": "class Box:\n    def __len__(self):\n        return 0\nprint(bool(Box()))",
+    "question": "What is printed?",
+    "code": "print(bool([]))",
     "options": [
       "True",
       "False",
-      "0",
-      "TypeError"
+      "Error",
+      "None"
     ],
     "answer": "False"
   },
   {
     "id": 65,
     "language": "Java",
-    "question": "Which overload wins with null?",
-    "code": "static void f(String s) { System.out.println(\"String\"); }\nstatic void f(StringBuilder s) { System.out.println(\"Builder\"); }\nf(null);",
+    "question": "What is printed?",
+    "code": "System.out.println(1 == '1');",
     "options": [
-      "String",
-      "Builder",
-      "Object",
-      "Compilation Error"
+      "true",
+      "false",
+      "Error",
+      "Depends"
     ],
-    "answer": "Compilation Error"
+    "answer": "Error"
   },
   {
     "id": 66,
     "language": "C++",
-    "question": "What is printed by object slicing?",
-    "code": "struct A { virtual int f() { return 1; } };\nstruct B : A { int f() override { return 2; } };\nB b;\nA a = b;\nstd::cout << a.f();",
+    "question": "What is printed?",
+    "code": "int x = 3.9;\nstd::cout << x;",
     "options": [
-      "1",
-      "2",
-      "Compilation Error",
-      "Undefined behavior"
+      "3",
+      "4",
+      "3.9",
+      "Error"
     ],
-    "answer": "1"
+    "answer": "3"
   },
   {
     "id": 67,
     "language": "Python",
-    "question": "What is printed by this sort key code?",
-    "code": "data = ['aaa', 'b', 'cc']\ndata.sort(key=len)\nprint(data)",
+    "question": "What is printed?",
+    "code": "print(len(\"test\"[1:]))",
     "options": [
-      "['aaa', 'cc', 'b']",
-      "['b', 'cc', 'aaa']",
-      "['aaa', 'b', 'cc']",
-      "TypeError"
+      "3",
+      "4",
+      "2",
+      "Error"
     ],
-    "answer": "['b', 'cc', 'aaa']"
+    "answer": "3"
   },
   {
     "id": 68,
     "language": "Java",
-    "question": "What is printed by static method hiding?",
-    "code": "class A { static String name() { return \"A\"; } }\nclass B extends A { static String name() { return \"B\"; } }\nA obj = new B();\nSystem.out.println(obj.name());",
+    "question": "What is printed?",
+    "code": "System.out.println(\"cat\".substring(1));",
     "options": [
-      "A",
-      "B",
-      "AB",
-      "Compilation Error"
+      "at",
+      "cat",
+      "Error",
+      "Depends"
     ],
-    "answer": "A"
+    "answer": "at"
   },
   {
     "id": 69,
     "language": "C++",
-    "question": "What is printed by reference capture?",
-    "code": "int x = 1;\nauto f = [&x]() { return ++x; };\nstd::cout << f() << \" \" << x;",
+    "question": "What is printed?",
+    "code": "std::cout << (true or false);",
     "options": [
-      "1 1",
-      "2 1",
-      "2 2",
-      "Compilation Error"
+      "1",
+      "true",
+      "Error",
+      "Depends"
     ],
-    "answer": "2 2"
+    "answer": "Error"
   },
   {
     "id": 70,
     "language": "Python",
-    "question": "What is printed by this MRO list?",
-    "code": "class A: pass\nclass B(A): pass\nclass C(A): pass\nclass D(B, C): pass\nprint([cls.__name__ for cls in D.mro()[:4]])",
+    "question": "What is printed?",
+    "code": "print(1 and 2 or 3)",
     "options": [
-      "['D', 'B', 'C', 'A']",
-      "['D', 'C', 'B', 'A']",
-      "['D', 'B', 'A', 'C']",
-      "['A', 'B', 'C', 'D']"
-    ],
-    "answer": "['D', 'B', 'C', 'A']"
-  },
-  {
-    "id": 71,
-    "language": "Java",
-    "question": "What does this switch expression print?",
-    "code": "String s = \"B\";\nint n = switch (s) {\n  case \"A\" -> 1;\n  case \"B\" -> 2;\n  default -> 0;\n};\nSystem.out.println(n);",
-    "options": [
-      "0",
       "1",
       "2",
-      "Compilation Error"
+      "3",
+      "Error"
     ],
     "answer": "2"
   },
   {
+    "id": 71,
+    "language": "Java",
+    "question": "What is printed?",
+    "code": "System.out.println(1 | 2);",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "Error"
+    ],
+    "answer": "3"
+  },
+  {
     "id": 72,
     "language": "C++",
-    "question": "Which overload is selected?",
-    "code": "void f(int) { std::cout << \"int\"; }\nvoid f(double) { std::cout << \"double\"; }\nf(3.0f);",
+    "question": "What is printed?",
+    "code": "int x = 1;\nstd::cout << (x << 1);",
     "options": [
-      "int",
-      "double",
-      "float",
-      "Compilation Error"
+      "1",
+      "2",
+      "8",
+      "Error"
     ],
-    "answer": "double"
+    "answer": "2"
   },
   {
     "id": 73,
     "language": "Python",
-    "question": "What does this walrus expression print?",
-    "code": "nums = [1, 2, 3]\nif (n := len(nums)) > 2:\n    print(n)\nprint('n' in globals())",
+    "question": "What is printed?",
+    "code": "print([1, 2] + [3, 4])",
     "options": [
-      "3\\nTrue",
-      "3\\nFalse",
-      "True",
-      "SyntaxError"
+      "[1, 2, 3, 4]",
+      "[1, 2] + [3, 4]",
+      "Error",
+      "None"
     ],
-    "answer": "3\\nTrue"
+    "answer": "[1, 2, 3, 4]"
   },
   {
     "id": 74,
     "language": "Java",
-    "question": "What is printed by this initialization order?",
-    "code": "class Demo {\n  static { System.out.print(\"S\"); }\n  { System.out.print(\"I\"); }\n  Demo() { System.out.print(\"C\"); }\n}\nnew Demo();\nnew Demo();",
+    "question": "What is printed?",
+    "code": "System.out.println(\"x\".repeat(3));",
     "options": [
-      "SICI",
-      "SICIC",
-      "SICSIC",
-      "ICIC"
+      "xxx",
+      "Error",
+      "x x x",
+      "Depends"
     ],
-    "answer": "SICIC"
+    "answer": "xxx"
   },
   {
     "id": 75,
     "language": "C++",
-    "question": "What is printed by erase-remove?",
-    "code": "std::vector<int> v = {1, 2, 2, 3};\nv.erase(std::remove(v.begin(), v.end(), 2), v.end());\nstd::cout << v.size();",
+    "question": "What is printed?",
+    "code": "int x = 5;\nstd::cout << (x >> 1);",
     "options": [
       "2",
       "3",
-      "4",
-      "Compilation Error"
+      "1",
+      "Error"
     ],
     "answer": "2"
   },
   {
     "id": 76,
     "language": "Python",
-    "question": "What is printed by this unpacking code?",
-    "code": "a, *b, c = range(5)\nprint(a, b, c)",
+    "question": "What is printed?",
+    "code": "x = [1, 2, 3]\nx[1] = 9\nprint(x)",
     "options": [
-      "0 [1, 2, 3] 4",
-      "0 (1, 2, 3) 4",
-      "1 [2, 3] 4",
-      "ValueError"
+      "[1, 9, 3]",
+      "[9, 2, 3]",
+      "Error",
+      "None"
     ],
-    "answer": "0 [1, 2, 3] 4"
+    "answer": "[1, 9, 3]"
   },
   {
     "id": 77,
     "language": "Java",
-    "question": "What does this short-circuit code print?",
-    "code": "int x = 0;\nboolean r = false && (++x > 0);\nSystem.out.println(x + \" \" + r);",
+    "question": "What is printed?",
+    "code": "System.out.println(10 / 3);",
     "options": [
-      "0 false",
-      "1 false",
-      "1 true",
-      "Compilation Error"
+      "3",
+      "3.33",
+      "Error",
+      "Depends"
     ],
-    "answer": "0 false"
+    "answer": "3"
   },
   {
     "id": 78,
     "language": "C++",
-    "question": "What happens here?",
-    "code": "int& r = 10;\nstd::cout << r;",
+    "question": "What is printed?",
+    "code": "int x = 3;\nstd::cout << (x == 3 ? \"a\" : \"b\");",
     "options": [
-      "10",
-      "0",
-      "Compilation Error",
-      "Undefined behavior"
+      "a",
+      "b",
+      "Error",
+      "Depends"
     ],
-    "answer": "Compilation Error"
+    "answer": "a"
   },
   {
     "id": 79,
     "language": "Python",
-    "question": "What is printed by this iterator sharing code?",
-    "code": "it = iter([1, 2, 3])\na = list(zip(it, it))\nprint(a)",
+    "question": "What is printed?",
+    "code": "print(2 ** 3)",
     "options": [
-      "[(1, 1), (2, 2), (3, 3)]",
-      "[(1, 2)]",
-      "[(1, 2), (3, None)]",
-      "[]"
+      "6",
+      "8",
+      "Error",
+      "None"
     ],
-    "answer": "[(1, 2)]"
+    "answer": "8"
   },
   {
     "id": 80,
     "language": "Java",
-    "question": "What is printed by integer caching here?",
-    "code": "Integer a = 127;\nInteger b = 127;\nInteger c = 128;\nInteger d = 128;\nSystem.out.println((a == b) + \" \" + (c == d));",
+    "question": "What is printed?",
+    "code": "System.out.println(\"java\".indexOf('v'));",
     "options": [
-      "true true",
-      "true false",
-      "false true",
-      "false false"
+      "2",
+      "3",
+      "Error",
+      "Depends"
     ],
-    "answer": "true false"
+    "answer": "2"
   },
   {
     "id": 81,
     "language": "C++",
-    "question": "What is printed by this overload with nullptr?",
-    "code": "void f(int) { std::cout << \"int\"; }\nvoid f(char*) { std::cout << \"ptr\"; }\nf(nullptr);",
+    "question": "What is printed?",
+    "code": "int x = 0;\nstd::cout << (x++ == 0);",
     "options": [
-      "int",
-      "ptr",
-      "Both",
-      "Compilation Error"
+      "1",
+      "0",
+      "Error",
+      "Depends"
     ],
-    "answer": "ptr"
+    "answer": "1"
   },
   {
     "id": 82,
     "language": "Python",
-    "question": "What is printed by this argument binding?",
-    "code": "def f(a, b=2, *args, c=5):\n    print(a, b, args, c)\nf(1, 3, 4, 5, c=6)",
+    "question": "What is printed?",
+    "code": "print(\"hello\".replace(\"l\", \"L\"))",
     "options": [
-      "1 3 (4, 5) 6",
-      "1 2 (3, 4, 5) 6",
-      "1 3 [4, 5] 6",
-      "TypeError"
+      "heLLo",
+      "hello",
+      "Error",
+      "None"
     ],
-    "answer": "1 3 (4, 5) 6"
+    "answer": "heLLo"
   },
   {
     "id": 83,
     "language": "Java",
-    "question": "Which overload is chosen?",
-    "code": "static void f(long x) { System.out.println(\"long\"); }\nstatic void f(Integer x) { System.out.println(\"Integer\"); }\nf(5);",
+    "question": "What is printed?",
+    "code": "System.out.println(Math.max(1, 2));",
     "options": [
-      "long",
-      "Integer",
-      "Both",
-      "Compilation Error"
+      "1",
+      "2",
+      "Error",
+      "Depends"
     ],
-    "answer": "long"
+    "answer": "2"
   },
   {
     "id": 84,
     "language": "C++",
-    "question": "What is printed by the const reference?",
-    "code": "const int& r = 10;\nstd::cout << r;",
+    "question": "What is printed?",
+    "code": "int x = 1;\nstd::cout << (x *= 2);",
     "options": [
-      "10",
-      "0",
-      "Compilation Error",
-      "Undefined behavior"
+      "1",
+      "2",
+      "4",
+      "Error"
     ],
-    "answer": "10"
+    "answer": "2"
   },
   {
     "id": 85,
     "language": "Python",
-    "question": "What is the output of this decorator stacking?",
-    "code": "def deco(name):\n    def wrap(fn):\n        print(name, end='')\n        return fn\n    return wrap\n\n@deco('A')\n@deco('B')\ndef f(): pass",
+    "question": "What is printed?",
+    "code": "print(\"a\" in \"cat\")",
     "options": [
-      "AB",
-      "BA",
-      "A",
-      "Nothing"
+      "True",
+      "False",
+      "Error",
+      "None"
     ],
-    "answer": "BA"
+    "answer": "True"
   },
   {
     "id": 86,
     "language": "Java",
-    "question": "What is printed by post-increment in the expression?",
-    "code": "int x = 1;\nint y = x++ + ++x;\nSystem.out.println(x + \" \" + y);",
+    "question": "What is printed?",
+    "code": "System.out.println(3 + 4 * 2);",
     "options": [
-      "2 3",
-      "3 3",
-      "3 4",
-      "Compilation Error"
+      "11",
+      "14",
+      "Error",
+      "Depends"
     ],
-    "answer": "3 4"
+    "answer": "11"
   },
   {
     "id": 87,
     "language": "C++",
-    "question": "What is printed by this lambda capture?",
-    "code": "int x = 1;\nauto f = [x]() mutable { return ++x; };\nstd::cout << f() << \" \" << x;",
+    "question": "What is printed?",
+    "code": "int x = 5;\nstd::cout << (x++ + 1);",
     "options": [
-      "1 1",
-      "2 1",
-      "2 2",
-      "Compilation Error"
+      "6",
+      "7",
+      "5",
+      "Error"
     ],
-    "answer": "2 1"
+    "answer": "6"
   },
   {
     "id": 88,
     "language": "Python",
-    "question": "What does this exception flow print?",
-    "code": "try:\n    raise ValueError('x')\nexcept LookupError:\n    print('lookup')\nexcept Exception:\n    print('exception')\nelse:\n    print('else')\nfinally:\n    print('finally')",
+    "question": "What is printed?",
+    "code": "print(True + 1)",
     "options": [
-      "lookup\\nfinally",
-      "exception\\nfinally",
-      "exception\\nelse\\nfinally",
-      "ValueError"
+      "1",
+      "2",
+      "Error",
+      "None"
     ],
-    "answer": "exception\\nfinally"
+    "answer": "2"
   },
   {
     "id": 89,
     "language": "Java",
-    "question": "Which overload is selected?",
-    "code": "static void f(int... x) { System.out.println(\"varargs\"); }\nstatic void f(Integer x) { System.out.println(\"Integer\"); }\nf(7);",
+    "question": "What is printed?",
+    "code": "System.out.println(\"abc\".length());",
     "options": [
-      "varargs",
-      "Integer",
-      "Both",
-      "Compilation Error"
+      "2",
+      "3",
+      "Error",
+      "Depends"
     ],
-    "answer": "Integer"
+    "answer": "3"
   },
   {
     "id": 90,
     "language": "C++",
-    "question": "What happens after this unique_ptr copy attempt?",
-    "code": "std::unique_ptr<int> a(new int(5));\nstd::unique_ptr<int> b = a;",
+    "question": "What is printed?",
+    "code": "int x = 2;\nstd::cout << (x && 1);",
     "options": [
-      "Both own the int",
-      "b steals from a",
-      "Compilation Error",
-      "Runtime Error"
+      "0",
+      "1",
+      "2",
+      "Error"
     ],
-    "answer": "Compilation Error"
+    "answer": "1"
   }
 ]
