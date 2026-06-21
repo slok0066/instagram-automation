@@ -1363,5 +1363,200 @@
       "Compilation Error"
     ],
     "answer": "6"
+  },
+  {
+    "id": 106,
+    "language": "Python",
+    "question": "What is the output of this safe list slice?",
+    "code": "x = [1, 2, 3]\nprint(x[10:])",
+    "options": [
+      "[]",
+      "IndexError",
+      "None",
+      "SyntaxError"
+    ],
+    "answer": "[]"
+  },
+  {
+    "id": 107,
+    "language": "Python",
+    "question": "What does this negative modulo print?",
+    "code": "print(-5 % 3)",
+    "options": [
+      "-2",
+      "1",
+      "2",
+      "-1"
+    ],
+    "answer": "1"
+  },
+  {
+    "id": 108,
+    "language": "Python",
+    "question": "What is printed by these string comparisons?",
+    "code": "print('a' > 'A', 'apple' < 'apricot')",
+    "options": [
+      "True True",
+      "True False",
+      "False True",
+      "False False"
+    ],
+    "answer": "True True"
+  },
+  {
+    "id": 109,
+    "language": "Python",
+    "question": "Does the loop variable leak in Python?",
+    "code": "for i in range(3):\n    pass\nprint(i)",
+    "options": [
+      "2",
+      "3",
+      "NameError",
+      "None"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 110,
+    "language": "Python",
+    "question": "When is the default parameter expression evaluated?",
+    "code": "import time\ndef f(t=time.time()):\n    return t\na = f()\ntime.sleep(0.01)\nb = f()\nprint(a == b)",
+    "options": [
+      "True",
+      "False",
+      "TypeError",
+      "Depends on execution speed"
+    ],
+    "answer": "True"
+  },
+  {
+    "id": 111,
+    "language": "Java",
+    "question": "What is the result of non-short-circuit bitwise evaluation?",
+    "code": "int x = 0;\ntry {\n  if (x != 0 & (1 / x == 1)) {\n    System.out.println(\"yes\");\n  } else {\n    System.out.println(\"no\");\n  }\n} catch (ArithmeticException e) {\n  System.out.println(\"Err\");\n}",
+    "options": [
+      "yes",
+      "no",
+      "Err",
+      "Compilation Error"
+    ],
+    "answer": "Err"
+  },
+  {
+    "id": 112,
+    "language": "Java",
+    "question": "What does this float vs double direct comparison print?",
+    "code": "float x = 0.5f;\ndouble y = 0.5;\nSystem.out.println(x == y);",
+    "options": [
+      "true",
+      "false",
+      "Compilation Error",
+      "Depends on JVM"
+    ],
+    "answer": "true"
+  },
+  {
+    "id": 113,
+    "language": "Java",
+    "question": "What is printed by final string constant folding?",
+    "code": "final String a = \"hello\";\nString b = a + \" world\";\nString c = \"hello world\";\nSystem.out.println(b == c);",
+    "options": [
+      "true",
+      "false",
+      "Compilation Error",
+      "Depends on JVM"
+    ],
+    "answer": "true"
+  },
+  {
+    "id": 114,
+    "language": "Java",
+    "question": "What is the compile/runtime result of this cast?",
+    "code": "double x = 9.9;\nint y = (int) x + 0.1;",
+    "options": [
+      "9",
+      "10",
+      "Compilation Error",
+      "ClassCastException"
+    ],
+    "answer": "Compilation Error"
+  },
+  {
+    "id": 115,
+    "language": "Java",
+    "question": "What is the size of this allocated array?",
+    "code": "int[] arr = new int[]{};\nSystem.out.println(arr.length);",
+    "options": [
+      "0",
+      "1",
+      "NullPointerException",
+      "Compilation Error"
+    ],
+    "answer": "0"
+  },
+  {
+    "id": 116,
+    "language": "C++",
+    "question": "What is printed by this octal integer?",
+    "code": "int x = 012;\nstd::cout << x;",
+    "options": [
+      "12",
+      "10",
+      "8",
+      "Compilation Error"
+    ],
+    "answer": "10"
+  },
+  {
+    "id": 117,
+    "language": "C++",
+    "question": "What is printed by this boolean addition?",
+    "code": "std::cout << (true + true + false);",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "Compilation Error"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 118,
+    "language": "C++",
+    "question": "What happens when binding reference to post-increment?",
+    "code": "int x = 1;\nint& r1 = ++x;\nint& r2 = x++;",
+    "options": [
+      "Compiles and runs",
+      "Compilation Error",
+      "Undefined Behavior",
+      "Runtime Error"
+    ],
+    "answer": "Compilation Error"
+  },
+  {
+    "id": 119,
+    "language": "C++",
+    "question": "What is the size of this char array literal?",
+    "code": "char s[] = \"abc\";\nstd::cout << sizeof(s);",
+    "options": [
+      "3",
+      "4",
+      "8",
+      "Compilation Error"
+    ],
+    "answer": "4"
+  },
+  {
+    "id": 120,
+    "language": "C++",
+    "question": "What happens with incompatible conditional operator types?",
+    "code": "auto val = true ? \"yes\" : 0;",
+    "options": [
+      "val is \"yes\"",
+      "val is 0",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "Compilation Error"
   }
 ]
