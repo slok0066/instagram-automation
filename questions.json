@@ -1168,5 +1168,200 @@
       "Error"
     ],
     "answer": "1"
+  },
+  {
+    "id": 91,
+    "language": "Python",
+    "question": "What is printed by this tuple-list modification?",
+    "code": "t = ([1, 2],)\ntry:\n    t[0] += [3]\nexcept TypeError:\n    print('Err', t[0])",
+    "options": [
+      "Err [1, 2]",
+      "Err [1, 2, 3]",
+      "TypeError is not raised",
+      "SyntaxError"
+    ],
+    "answer": "Err [1, 2, 3]"
+  },
+  {
+    "id": 92,
+    "language": "Python",
+    "question": "What is printed by these empty list checks?",
+    "code": "print(all([]), any([]))",
+    "options": [
+      "True True",
+      "False False",
+      "True False",
+      "False True"
+    ],
+    "answer": "True False"
+  },
+  {
+    "id": 93,
+    "language": "Python",
+    "question": "What is printed by this string short-circuit?",
+    "code": "x = 'a'\nprint(x * 0 or 'b' * 2)",
+    "options": [
+      "a",
+      "bb",
+      "abb",
+      "None"
+    ],
+    "answer": "bb"
+  },
+  {
+    "id": 94,
+    "language": "Python",
+    "question": "What gets printed by these closures?",
+    "code": "funcs = [lambda: i for i in range(3)]\nprint([f() for f in funcs])",
+    "options": [
+      "[0, 1, 2]",
+      "[2, 2, 2]",
+      "[0, 0, 0]",
+      "TypeError"
+    ],
+    "answer": "[2, 2, 2]"
+  },
+  {
+    "id": 95,
+    "language": "Python",
+    "question": "What does Python's banker's rounding print?",
+    "code": "print(round(2.5), round(3.5))",
+    "options": [
+      "3 4",
+      "2 4",
+      "3 3",
+      "2 3"
+    ],
+    "answer": "2 4"
+  },
+  {
+    "id": 96,
+    "language": "Java",
+    "question": "What does Integer cache comparison print?",
+    "code": "Integer a = 127, b = 127;\nInteger c = 128, d = 128;\nSystem.out.println((a == b) + \" \" + (c == d));",
+    "options": [
+      "true true",
+      "true false",
+      "false true",
+      "false false"
+    ],
+    "answer": "true false"
+  },
+  {
+    "id": 97,
+    "language": "Java",
+    "question": "What is printed by this char addition?",
+    "code": "System.out.println('A' + 'B');",
+    "options": [
+      "AB",
+      "131",
+      "6566",
+      "Compilation Error"
+    ],
+    "answer": "131"
+  },
+  {
+    "id": 98,
+    "language": "Java",
+    "question": "What does this postfix and prefix evaluation print?",
+    "code": "int x = 5;\nx = x++ + ++x;\nSystem.out.println(x);",
+    "options": [
+      "11",
+      "12",
+      "13",
+      "10"
+    ],
+    "answer": "12"
+  },
+  {
+    "id": 99,
+    "language": "Java",
+    "question": "Which specific overload is selected for null?",
+    "code": "class Test {\n  static void f(double[] x) { System.out.println(\"array\"); }\n  static void f(Object o) { System.out.println(\"object\"); }\n  public static void main(String[] args) { f(null); }\n}",
+    "options": [
+      "array",
+      "object",
+      "null",
+      "Compilation Error"
+    ],
+    "answer": "array"
+  },
+  {
+    "id": 100,
+    "language": "Java",
+    "question": "What is printed by double vs float precision?",
+    "code": "double a = 0.1;\nfloat b = 0.1f;\nSystem.out.println(a == b);",
+    "options": [
+      "true",
+      "false",
+      "Compilation Error",
+      "Depends on JVM"
+    ],
+    "answer": "false"
+  },
+  {
+    "id": 101,
+    "language": "C++",
+    "question": "What is printed by operator precedence?",
+    "code": "std::cout << 1 + 2 << 3;",
+    "options": [
+      "123",
+      "33",
+      "6",
+      "Compilation Error"
+    ],
+    "answer": "33"
+  },
+  {
+    "id": 102,
+    "language": "C++",
+    "question": "What is returned by the comma operator?",
+    "code": "int x = (1, 2, 3);\nstd::cout << x;",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "Compilation Error"
+    ],
+    "answer": "3"
+  },
+  {
+    "id": 103,
+    "language": "C++",
+    "question": "What is printed after sizeof execution?",
+    "code": "int x = 5;\nstd::cout << sizeof(x++) << \" \" << x;",
+    "options": [
+      "4 5",
+      "4 6",
+      "8 5",
+      "8 6"
+    ],
+    "answer": "4 5"
+  },
+  {
+    "id": 104,
+    "language": "C++",
+    "question": "What is printed by this array size calculation?",
+    "code": "int arr[] = {1, 2, 3};\nstd::cout << sizeof(arr) / sizeof(*arr);",
+    "options": [
+      "1",
+      "3",
+      "12",
+      "Compilation Error"
+    ],
+    "answer": "3"
+  },
+  {
+    "id": 105,
+    "language": "C++",
+    "question": "What is the value of member x after initialization list?",
+    "code": "struct A {\n    int x = 1;\n    A(int val) : x(val + 1) {}\n};\nA a(5);\nstd::cout << a.x;",
+    "options": [
+      "1",
+      "5",
+      "6",
+      "Compilation Error"
+    ],
+    "answer": "6"
   }
 ]
