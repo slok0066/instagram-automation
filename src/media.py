@@ -27,3 +27,15 @@ def get_random_background_video():
             return single_bg
         return None
     return random.choice(videos)
+
+
+def get_random_hook_video():
+    """Returns a path to a random MP4 file in assets/hooks/ directory, or None if none exist."""
+    hooks_dir = os.path.join("assets", "hooks")
+    if not os.path.exists(hooks_dir):
+        return None
+    videos = glob.glob(os.path.join(hooks_dir, "*.mp4"))
+    if not videos:
+        return None
+    return random.choice(videos)
+

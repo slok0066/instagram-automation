@@ -24,10 +24,12 @@ temp_frame.png
 # Allow specific asset templates to be tracked by Git
 !assets/
 !assets/backgrounds/
+!assets/hooks/
 !assets/songs/
 !assets/fonts/
 !assets/watermark_cover.png
 !assets/backgrounds/*.mp4
+!assets/hooks/*.mp4
 !assets/songs/*.mp3
 !assets/fonts/*.ttf
 

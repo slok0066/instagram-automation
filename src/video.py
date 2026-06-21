@@ -5,9 +5,9 @@ Video rendering module using MoviePy to assemble timelines and generate high-fid
 
 import os
 import random
-from moviepy import ImageClip, AudioFileClip, VideoFileClip, CompositeVideoClip
+from moviepy import ImageClip, AudioFileClip, VideoFileClip, CompositeVideoClip, concatenate_videoclips
 
-from media import get_random_song, get_random_background_video;
+from media import get_random_song, get_random_background_video, get_random_hook_video;
 from graphics import generate_graphics
 
 def generate_video(question_data, output_video_path):
@@ -36,6 +36,22 @@ def generate_video(question_data, output_video_path):
     print("[*] Compositing video timeline using MoviePy...")
     bg_clip = None
     overlay_clip = None
+    hook_clip = None
+    final_clip = None
+    
+    hook_path = get_random_hook_video()
+    if hook_path:
+        print(f"[*] Hook video detected: '{os.path.basename(hook_path)}'! Loading hook...")
+        try:
+            hook_clip = VideoFileClip(hook_path)
+            if hasattr(hook_clip, 'resized'):
+                hook_clip = hook_clip.resized((1080, 1920))
+            else:
+                hook_clip = hook_clip.resize((1080, 1920))
+        except Exception as e:
+            print(f"[!] Warning: Failed to load hook video: {e}. Proceeding without hook.")
+            hook_clip = None
+
     try:
         if has_video_bg:
             print("[*] Processing background video clip...")
@@ -145,21 +161,29 @@ def generate_video(question_data, output_video_path):
             else:
                 clip = clip.set_audio(audio_clip)
             
+        final_clip = clip
+        if hook_clip:
+            print("[*] Concatenating hook video and main video...")
+            final_clip = concatenate_videoclips([hook_clip, clip], method="compose")
+            
+        has_audio = final_clip.audio is not None
         print(f"[*] Exporting final optimized high-quality MP4 to: {output_video_path}...")
-        clip.write_videofile(
+        final_clip.write_videofile(
             output_video_path,
             fps=24,
             codec="libx264",
             bitrate="15000k",
             preset="medium",
-            audio_codec="aac" if audio_clip else None,
-            temp_audiofile=os.path.join("output", "temp_audio.m4a") if audio_clip else None,
+            audio_codec="aac" if has_audio else None,
+            temp_audiofile=os.path.join("output", "temp_audio.m4a") if has_audio else None,
             remove_temp=True,
             ffmpeg_params=["-crf", "18", "-pix_fmt", "yuv420p"],
             logger=None  # Cleans up MoviePy verbose output logs
         )
         
         # Critical on Windows: Close clips to release file system lock tags
+        if final_clip != clip:
+            final_clip.close()
         clip.close()
         if bg_clip:
             bg_clip.close()
@@ -167,6 +191,8 @@ def generate_video(question_data, output_video_path):
             overlay_clip.close()
         if audio_clip:
             audio_clip.close()
+        if hook_clip:
+            hook_clip.close()
             
         print("[+] Video compiled successfully!")
         

@@ -23,6 +23,7 @@ def main():
     os.makedirs("assets/fonts", exist_ok=True)
     os.makedirs("assets/songs", exist_ok=True)
     os.makedirs("assets/backgrounds", exist_ok=True)
+    os.makedirs("assets/hooks", exist_ok=True)
     os.makedirs("output", exist_ok=True)
     
     # Ensure premium font assets are installed
