@@ -1753,5 +1753,200 @@
       "Undefined Behavior"
     ],
     "answer": "1"
+  },
+  {
+    "id": 136,
+    "language": "Python",
+    "question": "What is printed by tuple addition vs multiplication?",
+    "code": "x = (1, 2)\nprint(x + x == x * 2)",
+    "options": [
+      "True",
+      "False",
+      "TypeError",
+      "SyntaxError"
+    ],
+    "answer": "True"
+  },
+  {
+    "id": 137,
+    "language": "Python",
+    "question": "What is printed by this dictionary key override?",
+    "code": "d = {1: 'a', True: 'b'}\nprint(len(d), d[1])",
+    "options": [
+      "2 a",
+      "2 b",
+      "1 a",
+      "1 b"
+    ],
+    "answer": "1 b"
+  },
+  {
+    "id": 138,
+    "language": "Python",
+    "question": "What happens when inserting out of bounds in a list?",
+    "code": "x = [1, 2]\nx.insert(10, 3)\nprint(x)",
+    "options": [
+      "[1, 2, 3]",
+      "IndexError",
+      "[1, 2, None, 3]",
+      "TypeError"
+    ],
+    "answer": "[1, 2, 3]"
+  },
+  {
+    "id": 139,
+    "language": "Python",
+    "question": "What is the boolean evaluation of these strings?",
+    "code": "print(bool('False'), bool(''))",
+    "options": [
+      "False False",
+      "True False",
+      "True True",
+      "False True"
+    ],
+    "answer": "True False"
+  },
+  {
+    "id": 140,
+    "language": "Python",
+    "question": "What does the list sort() method return?",
+    "code": "x = [3, 2, 1]\nprint(x.sort(), x)",
+    "options": [
+      "[1, 2, 3] [1, 2, 3]",
+      "None [1, 2, 3]",
+      "None [3, 2, 1]",
+      "TypeError"
+    ],
+    "answer": "None [1, 2, 3]"
+  },
+  {
+    "id": 141,
+    "language": "Java",
+    "question": "What is printed by double subtraction precision?",
+    "code": "System.out.println(1.0 - 0.9);",
+    "options": [
+      "0.1",
+      "0.09999999999999998",
+      "0.0",
+      "Compilation Error"
+    ],
+    "answer": "0.09999999999999998"
+  },
+  {
+    "id": 142,
+    "language": "Java",
+    "question": "What is the value of x after short-circuit evaluation?",
+    "code": "int x = 0;\nboolean b = (x++ == 0) || (x++ == 1);\nSystem.out.println(x);",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "Compilation Error"
+    ],
+    "answer": "1"
+  },
+  {
+    "id": 143,
+    "language": "Java",
+    "question": "What does String.valueOf print for a char array?",
+    "code": "char[] a = {'a', 'b'};\nSystem.out.println(String.valueOf(a));",
+    "options": [
+      "ab",
+      "[C@...",
+      "Compilation Error",
+      "NullPointerException"
+    ],
+    "answer": "ab"
+  },
+  {
+    "id": 144,
+    "language": "Java",
+    "question": "What happens when accessing a null array?",
+    "code": "try {\n  int[] a = null;\n  System.out.println(a[0]);\n} catch (NullPointerException e) {\n  System.out.println(\"NPE\");\n}",
+    "options": [
+      "0",
+      "NPE",
+      "Compilation Error",
+      "ArrayIndexOutOfBoundsException"
+    ],
+    "answer": "NPE"
+  },
+  {
+    "id": 145,
+    "language": "Java",
+    "question": "What does negative modulo print in Java?",
+    "code": "System.out.println(-5 % 3);",
+    "options": [
+      "-2",
+      "1",
+      "2",
+      "-1"
+    ],
+    "answer": "-2"
+  },
+  {
+    "id": 146,
+    "language": "C++",
+    "question": "What is the value of x after integer division?",
+    "code": "double x = 5 / 2;\nstd::cout << x;",
+    "options": [
+      "2",
+      "2.5",
+      "3",
+      "Compilation Error"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 147,
+    "language": "C++",
+    "question": "What is returned by the comma operator here?",
+    "code": "int x = 5, y = 10;\nstd::cout << (x, y) * 2;",
+    "options": [
+      "10",
+      "20",
+      "30",
+      "Compilation Error"
+    ],
+    "answer": "20"
+  },
+  {
+    "id": 148,
+    "language": "C++",
+    "question": "What is printed by global variable resolution operator?",
+    "code": "int x = 1;\nint main() {\n    int x = 2;\n    std::cout << ::x << x;\n}",
+    "options": [
+      "12",
+      "21",
+      "22",
+      "Compilation Error"
+    ],
+    "answer": "12"
+  },
+  {
+    "id": 149,
+    "language": "C++",
+    "question": "What is printed by this alternative array indexing syntax?",
+    "code": "int a[2] = {1, 2};\nstd::cout << 1[a];",
+    "options": [
+      "1",
+      "2",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 150,
+    "language": "C++",
+    "question": "What is printed by adjacent string literals?",
+    "code": "std::string s = \"a\" \"b\";\nstd::cout << s;",
+    "options": [
+      "ab",
+      "a b",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "ab"
   }
 ]
