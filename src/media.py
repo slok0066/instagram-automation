@@ -13,7 +13,8 @@ def get_random_song():
     songs = glob.glob(os.path.join(songs_dir, "*.mp3"))
     if not songs:
         return None
-    return random.choice(songs)
+    # Use SystemRandom for high-entropy cryptographic randomization
+    return random.SystemRandom().choice(songs)
 
 
 def get_random_background_video():
@@ -26,7 +27,8 @@ def get_random_background_video():
         if os.path.exists(single_bg):
             return single_bg
         return None
-    return random.choice(videos)
+    # Use SystemRandom for high-entropy cryptographic randomization
+    return random.SystemRandom().choice(videos)
 
 
 def get_random_hook_video():
@@ -37,5 +39,6 @@ def get_random_hook_video():
     videos = glob.glob(os.path.join(hooks_dir, "*.mp4"))
     if not videos:
         return None
-    return random.choice(videos)
+    # Use SystemRandom for high-entropy cryptographic randomization
+    return random.SystemRandom().choice(videos)
 

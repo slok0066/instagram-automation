@@ -1558,5 +1558,200 @@
       "Undefined Behavior"
     ],
     "answer": "Compilation Error"
+  },
+  {
+    "id": 121,
+    "language": "Python",
+    "question": "What is printed by this integer caching comparison?",
+    "code": "a = 256\nb = 256\nc = 257\nd = 257\nprint(a is b, c is d)",
+    "options": [
+      "True True",
+      "True False",
+      "False True",
+      "False False"
+    ],
+    "answer": "True False"
+  },
+  {
+    "id": 122,
+    "language": "Python",
+    "question": "What is printed by boolean index multiplication?",
+    "code": "x = ['no', 'yes']\nprint(x[True] * 2)",
+    "options": [
+      "nonoyesyes",
+      "nono",
+      "yesyes",
+      "TypeError"
+    ],
+    "answer": "yesyes"
+  },
+  {
+    "id": 123,
+    "language": "Python",
+    "question": "What is the output of sum() on a boolean list?",
+    "code": "print(sum([True, False, True]))",
+    "options": [
+      "2",
+      "True",
+      "TypeError",
+      "1"
+    ],
+    "answer": "2"
+  },
+  {
+    "id": 124,
+    "language": "Python",
+    "question": "What does sorted string join on a set print?",
+    "code": "print(''.join(sorted(set('aba'))))",
+    "options": [
+      "aab",
+      "aba",
+      "ab",
+      "ba"
+    ],
+    "answer": "ab"
+  },
+  {
+    "id": 125,
+    "language": "Python",
+    "question": "What is printed by list multiplication references?",
+    "code": "x = [[]] * 2\nx[0].append(1)\nprint(x)",
+    "options": [
+      "[[1], []]",
+      "[[1], [1]]",
+      "[[1, 1]]",
+      "AttributeError"
+    ],
+    "answer": "[[1], [1]]"
+  },
+  {
+    "id": 126,
+    "language": "Java",
+    "question": "What is printed by concatenating a null reference?",
+    "code": "String s = null;\nSystem.out.println(s + \"ok\");",
+    "options": [
+      "nullok",
+      "ok",
+      "NullPointerException",
+      "Compilation Error"
+    ],
+    "answer": "nullok"
+  },
+  {
+    "id": 127,
+    "language": "Java",
+    "question": "What happens when unboxing a null Integer?",
+    "code": "try {\n  Integer x = null;\n  int y = x;\n  System.out.println(y);\n} catch (NullPointerException e) {\n  System.out.println(\"NPE\");\n}",
+    "options": [
+      "0",
+      "null",
+      "NPE",
+      "Compilation Error"
+    ],
+    "answer": "NPE"
+  },
+  {
+    "id": 128,
+    "language": "Java",
+    "question": "What is printed by this bitwise shift comparison?",
+    "code": "int x = 2;\nSystem.out.println(x >> 1 == 1);",
+    "options": [
+      "true",
+      "false",
+      "Compilation Error",
+      "ArithmeticException"
+    ],
+    "answer": "true"
+  },
+  {
+    "id": 129,
+    "language": "Java",
+    "question": "What is printed by this substring boundary index?",
+    "code": "System.out.println(\"abc\".substring(3));",
+    "options": [
+      "\"\"",
+      "c",
+      "StringIndexOutOfBoundsException",
+      "Compilation Error"
+    ],
+    "answer": "\"\""
+  },
+  {
+    "id": 130,
+    "language": "Java",
+    "question": "What is printed by double division by zero?",
+    "code": "System.out.println(1.0 / 0.0);",
+    "options": [
+      "Infinity",
+      "ArithmeticException",
+      "NaN",
+      "Compilation Error"
+    ],
+    "answer": "Infinity"
+  },
+  {
+    "id": 131,
+    "language": "C++",
+    "question": "What is printed by postfix pointer increment?",
+    "code": "int a[] = {10, 20, 30};\nint* p = a;\nstd::cout << *p++;",
+    "options": [
+      "10",
+      "20",
+      "30",
+      "Compilation Error"
+    ],
+    "answer": "10"
+  },
+  {
+    "id": 132,
+    "language": "C++",
+    "question": "What is the size of an empty struct in C++?",
+    "code": "struct Empty {};\nstd::cout << sizeof(Empty);",
+    "options": [
+      "0",
+      "1",
+      "4",
+      "Depends on compiler"
+    ],
+    "answer": "1"
+  },
+  {
+    "id": 133,
+    "language": "C++",
+    "question": "What happens when dynamic casting a non-polymorphic class?",
+    "code": "struct Base {};\nstruct Derived : Base {};\nBase* b = new Derived;\nDerived* d = dynamic_cast<Derived*>(b);",
+    "options": [
+      "d is null",
+      "Compilation Error",
+      "Undefined Behavior",
+      "Runtime Error"
+    ],
+    "answer": "Compilation Error"
+  },
+  {
+    "id": 134,
+    "language": "C++",
+    "question": "What does float vs double direct comparison print?",
+    "code": "float x = 0.1f;\nstd::cout << (x == 0.1);",
+    "options": [
+      "1",
+      "0",
+      "Compilation Error",
+      "Depends on compiler"
+    ],
+    "answer": "0"
+  },
+  {
+    "id": 135,
+    "language": "C++",
+    "question": "What is printed by chained relational operators?",
+    "code": "int x = 5;\nstd::cout << (1 < x < 5);",
+    "options": [
+      "0",
+      "1",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "1"
   }
 ]
