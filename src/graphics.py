@@ -47,12 +47,12 @@ def _center_text(draw, rect, text, font, fill):
 def _language_color(language):
     lang = language.lower()
     if "python" in lang:
-        return (0, 210, 255, 255), (45, 150, 235, 255)       # Electric Cyan & Python Blue
+        return (0, 240, 255, 255), (0, 110, 240, 255)       # Electric Cyan & Sapphire Blue
     if "java" in lang:
-        return (255, 128, 40, 255), (235, 90, 30, 255)       # Vibrant Flame Orange
+        return (255, 165, 0, 255), (220, 60, 20, 255)        # Neon Amber & Flame Orange
     if "c++" in lang or "cpp" in lang:
-        return (110, 145, 255, 255), (55, 120, 240, 255)    # Neon Indigo Blue
-    return (0, 230, 255, 255), (0, 170, 225, 255)
+        return (200, 90, 255, 255), (120, 40, 220, 255)     # Neon Violet/Magenta
+    return (0, 240, 255, 255), (0, 140, 230, 255)
 
 
 def _get_filename_for_lang(language):
@@ -68,16 +68,16 @@ def _get_filename_for_lang(language):
 
 def _draw_readability_scrim(draw):
     for y in range(0, CANVAS_H, 4):
-        top_strength = max(0, 160 - int(y * 0.24))
-        bottom_strength = max(0, int((y - 960) * 0.18))
-        alpha = min(195, max(68, top_strength, bottom_strength))
-        draw.rectangle([(0, y), (CANVAS_W, y + 4)], fill=(3, 5, 10, alpha))
+        top_strength = max(0, 170 - int(y * 0.25))
+        bottom_strength = max(0, int((y - 940) * 0.20))
+        alpha = min(205, max(72, top_strength, bottom_strength))
+        draw.rectangle([(0, y), (CANVAS_W, y + 4)], fill=(2, 4, 9, alpha))
 
 
-def _draw_panel(draw, rect, radius=28, fill=(13, 18, 30, 238), outline=(255, 255, 255, 45), width=2):
+def _draw_panel(draw, rect, radius=28, fill=(10, 15, 28, 242), outline=(255, 255, 255, 60), width=2):
     x1, y1, x2, y2 = rect
     # Drop shadow
-    _rounded(draw, (x1 + 6, y1 + 12, x2 + 6, y2 + 12), radius, (0, 0, 0, 95))
+    _rounded(draw, (x1 + 6, y1 + 14, x2 + 6, y2 + 14), radius, (0, 0, 0, 110))
     # Main panel card
     _rounded(draw, rect, radius, fill, outline, width)
 
@@ -169,50 +169,59 @@ def _draw_header(draw, question_data, font_path, primary_color, secondary_color)
     question_id = int(question_data.get("id", 1))
     language = question_data.get("language", "Coding")
 
-    font_meta = load_font(font_path, 25)
-    font_title = load_font(font_path, 72)
-    font_subtitle = load_font(font_path, 28)
+    font_meta = load_font(font_path, 26)
+    font_title = load_font(font_path, 74)
+    font_subtitle = load_font(font_path, 29)
 
-    # PART Pill Capsule with border glow
-    pill = (MARGIN_X, 72, MARGIN_X + 220, 126)
+    # PART Pill Capsule with vibrant glow border
+    pill = (MARGIN_X, 68, MARGIN_X + 230, 126)
     _rounded(draw, pill, 20, secondary_color, outline=primary_color, width=2)
-    _center_text(draw, pill, f"PART {question_id:03d}", font_meta, (255, 255, 255, 255))
+    _center_text(draw, pill, f"🔥 PART {question_id:03d}", font_meta, (255, 255, 255, 255))
 
     # Language Quiz Title
-    draw.text((MARGIN_X, 152), f"{language} Quiz", font=font_title, fill=(255, 255, 255, 255))
-    draw.text((MARGIN_X, 228), "⚡ Read the code. Pick the output.", font=font_subtitle, fill=(200, 210, 230, 240))
+    draw.text((MARGIN_X, 150), f"{language} Quiz", font=font_title, fill=(255, 255, 255, 255))
+    draw.text((MARGIN_X, 230), "⚡ Read the code. Pick the output.", font=font_subtitle, fill=(180, 215, 255, 245))
 
 
 def _draw_code_box(draw, rect, code_lines, font, line_h, primary_color, filename):
     x1, y1, x2, y2 = rect
     # IDE Outer Window container
-    _rounded(draw, rect, 24, (6, 9, 17, 250), (255, 255, 255, 40), 1)
+    _rounded(draw, rect, 24, (7, 11, 22, 252), (255, 255, 255, 45), 1)
     
     # IDE Header Bar
-    header_h = 56
-    _rounded(draw, (x1, y1, x2, y1 + header_h), 24, (16, 21, 33, 255))
-    draw.rectangle((x1, y1 + 32, x2, y1 + header_h), fill=(16, 21, 33, 255))
+    header_h = 58
+    _rounded(draw, (x1, y1, x2, y1 + header_h), 24, (18, 24, 38, 255))
+    draw.rectangle((x1, y1 + 32, x2, y1 + header_h), fill=(18, 24, 38, 255))
 
-    # macOS Window Dots (Red, Yellow, Green)
-    dot_y = y1 + 28
+    # macOS Window Control Dots (Red, Yellow, Green)
+    dot_y = y1 + 29
     for index, color in enumerate([(255, 95, 86, 255), (255, 189, 46, 255), (39, 201, 63, 255)]):
         cx = x1 + 28 + index * 24
         draw.ellipse((cx - 6, dot_y - 6, cx + 6, dot_y + 6), fill=color)
 
-    # Code File Tab Name (e.g. main.py)
-    tab_font = load_font(os.path.join("assets", "fonts", "font.ttf"), 22)
-    tab_rect = (x1 + 115, y1 + 10, x1 + 260, y1 + 46)
-    _rounded(draw, tab_rect, 10, (26, 33, 50, 255), outline=primary_color, width=1)
-    _center_text(draw, tab_rect, filename, tab_font, (220, 230, 250, 255))
+    # Code File Tab Name Badge (e.g. main.py)
+    tab_font = load_font(os.path.join("assets", "fonts", "font.ttf"), 23)
+    tab_rect = (x1 + 115, y1 + 10, x1 + 265, y1 + 48)
+    _rounded(draw, tab_rect, 10, (28, 36, 56, 255), outline=primary_color, width=1)
+    _center_text(draw, tab_rect, f"📄 {filename}", tab_font, (230, 240, 255, 255))
 
     # Accent Neon separator line
     draw.rectangle((x1, y1 + header_h, x2, y1 + header_h + 3), fill=primary_color)
 
-    # Code Lines
-    code_x = x1 + 32
+    # IDE Code Editor Lines with Line Numbers
+    num_font = load_font(os.path.join("assets", "fonts", "font.ttf"), 26)
     code_y = y1 + header_h + 24
-    for line in code_lines:
-        draw.text((code_x, code_y), line, font=font, fill=(240, 244, 255, 255))
+
+    for line_idx, line in enumerate(code_lines, start=1):
+        # Line Number in dim cyan/gray
+        num_str = f"{line_idx:2d}"
+        draw.text((x1 + 24, code_y), num_str, font=num_font, fill=(90, 115, 150, 220))
+        
+        # Vertical Separator Guide Line
+        draw.rectangle((x1 + 68, code_y + 2, x1 + 70, code_y + line_h - 4), fill=(40, 55, 80, 180))
+        
+        # Code Text
+        draw.text((x1 + 84, code_y), line, font=font, fill=(245, 250, 255, 255))
         code_y += line_h
 
 
@@ -220,22 +229,22 @@ def _draw_options(draw, options, font_path, primary_color, secondary_color, opti
     option_letters = ["A", "B", "C", "D"]
     option_x1 = MARGIN_X
     option_x2 = CANVAS_W - MARGIN_X
-    option_h = 136
-    option_gap = 26
-    text_left = option_x1 + 128
+    option_h = 138
+    option_gap = 24
+    text_left = option_x1 + 130
     text_right = option_x2 - 32
 
     for i, option in enumerate(options[:4]):
         y1 = option_y + i * (option_h + option_gap)
         y2 = y1 + option_h
-        fill = (14, 19, 32, 238)
-        outline = (255, 255, 255, 48)
+        fill = (15, 21, 36, 245)
+        outline = (255, 255, 255, 55)
         _draw_panel(draw, (option_x1, y1, option_x2, y2), radius=26, fill=fill, outline=outline, width=1)
 
         # Option Letter Badge (A, B, C, D)
-        letter_rect = (option_x1 + 26, y1 + 32, option_x1 + 92, y1 + 98)
+        letter_rect = (option_x1 + 26, y1 + 32, option_x1 + 96, y1 + 102)
         _rounded(draw, letter_rect, 18, secondary_color, outline=primary_color, width=2)
-        letter_font = load_font(font_path, 36)
+        letter_font = load_font(font_path, 38)
         _center_text(draw, letter_rect, option_letters[i], letter_font, (255, 255, 255, 255))
 
         # Option Text
@@ -245,7 +254,7 @@ def _draw_options(draw, options, font_path, primary_color, secondary_color, opti
         block_h = len(lines) * line_h - 8
         text_y = y1 + (option_h - block_h) / 2
         for line in lines:
-            draw.text((text_left, text_y), line, font=option_font, fill=(248, 250, 255, 255))
+            draw.text((text_left, text_y), line, font=option_font, fill=(250, 252, 255, 255))
             text_y += line_h
 
 
@@ -291,7 +300,7 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
         font_path,
         code,
         draw,
-        inner_w - 56,
+        inner_w - 90,  # Account for line number column
         max_height=520,
     )
 
@@ -300,7 +309,7 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
     panel_y2 = min(1068, panel_y1 + content_h)
     
     # Main Question Card Panel with glowing accent border
-    _draw_panel(draw, (panel_x1, panel_y1, panel_x2, panel_y2), radius=30, outline=(255, 255, 255, 55), width=2)
+    _draw_panel(draw, (panel_x1, panel_y1, panel_x2, panel_y2), radius=30, outline=(255, 255, 255, 65), width=2)
 
     # Accent Neon Bar on left
     accent_rect = (panel_x1, panel_y1, panel_x1 + 10, panel_y2)
@@ -315,15 +324,15 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
     filename = _get_filename_for_lang(language)
     _draw_code_box(draw, (inner_x1, y, inner_x2, y + code_h), code_lines, code_font, code_line_h, primary_color, filename)
 
-    option_start_y = max(panel_y2 + 50, 940)
-    option_start_y = min(option_start_y, 1134)
+    option_start_y = max(panel_y2 + 48, 940)
+    option_start_y = min(option_start_y, 1130)
     _draw_options(draw, question_data.get("options", []), font_path, primary_color, secondary_color, option_start_y)
 
     # Floating CTA Pill Banner at bottom
-    cta_rect = (MARGIN_X + 110, 1800, CANVAS_W - MARGIN_X - 110, 1860)
-    _rounded(draw, cta_rect, 20, (14, 20, 34, 240), outline=primary_color, width=2)
-    footer_font = load_font(font_path, 25)
-    _center_text(draw, cta_rect, "💬 COMMENT YOUR ANSWER (A, B, C, D)", footer_font, (255, 255, 255, 255))
+    cta_rect = (MARGIN_X + 60, 1800, CANVAS_W - MARGIN_X - 60, 1864)
+    _rounded(draw, cta_rect, 22, (16, 24, 42, 245), outline=primary_color, width=2)
+    footer_font = load_font(font_path, 26)
+    _center_text(draw, cta_rect, "💬 COMMENT YOUR ANSWER (A, B, C, D) BELOW! 👇", footer_font, (255, 255, 255, 255))
 
     # Watermark Cover Icon to hide Gemini logo (centered over x=935, y=1773)
     cover_path = os.path.join("assets", "watermark_cover.png")
