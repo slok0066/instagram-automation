@@ -1,6 +1,6 @@
 # graphics.py
 """
-Pillow graphics engine for polished vertical quiz videos.
+Pillow graphics engine for ultra-polished vertical quiz videos.
 """
 
 import os
@@ -47,25 +47,38 @@ def _center_text(draw, rect, text, font, fill):
 def _language_color(language):
     lang = language.lower()
     if "python" in lang:
-        return (58, 139, 213, 255)
+        return (0, 210, 255, 255), (45, 150, 235, 255)       # Electric Cyan & Python Blue
     if "java" in lang:
-        return (231, 111, 45, 255)
+        return (255, 128, 40, 255), (235, 90, 30, 255)       # Vibrant Flame Orange
     if "c++" in lang or "cpp" in lang:
-        return (51, 127, 210, 255)
-    return (0, 229, 255, 255)
+        return (110, 145, 255, 255), (55, 120, 240, 255)    # Neon Indigo Blue
+    return (0, 230, 255, 255), (0, 170, 225, 255)
+
+
+def _get_filename_for_lang(language):
+    lang = language.lower()
+    if "python" in lang:
+        return "main.py"
+    if "java" in lang:
+        return "Main.java"
+    if "c++" in lang or "cpp" in lang:
+        return "main.cpp"
+    return "solution.code"
 
 
 def _draw_readability_scrim(draw):
     for y in range(0, CANVAS_H, 4):
-        top_strength = max(0, 150 - int(y * 0.22))
-        bottom_strength = max(0, int((y - 980) * 0.16))
-        alpha = min(185, max(62, top_strength, bottom_strength))
-        draw.rectangle([(0, y), (CANVAS_W, y + 4)], fill=(4, 6, 12, alpha))
+        top_strength = max(0, 160 - int(y * 0.24))
+        bottom_strength = max(0, int((y - 960) * 0.18))
+        alpha = min(195, max(68, top_strength, bottom_strength))
+        draw.rectangle([(0, y), (CANVAS_W, y + 4)], fill=(3, 5, 10, alpha))
 
 
-def _draw_panel(draw, rect, radius=28, fill=(12, 16, 26, 222), outline=(255, 255, 255, 34), width=1):
+def _draw_panel(draw, rect, radius=28, fill=(13, 18, 30, 238), outline=(255, 255, 255, 45), width=2):
     x1, y1, x2, y2 = rect
-    _rounded(draw, (x1 + 8, y1 + 14, x2 + 8, y2 + 14), radius, (0, 0, 0, 86))
+    # Drop shadow
+    _rounded(draw, (x1 + 6, y1 + 12, x2 + 6, y2 + 12), radius, (0, 0, 0, 95))
+    # Main panel card
     _rounded(draw, rect, radius, fill, outline, width)
 
 
@@ -141,18 +154,18 @@ def _fit_code(font_path, code, draw, max_width, max_height, start_size=38, min_s
         line_h = _line_height(draw, font) + 10
         max_lines = max(4, int((max_height - 82) / line_h))
         lines = _prepare_code_lines(code, font, max_width, draw, max_lines)
-        height = 60 + len(lines) * line_h + 22
+        height = 64 + len(lines) * line_h + 24
         if height <= max_height:
             return font, lines, height, line_h
     font = load_font(font_path, min_size)
     line_h = _line_height(draw, font) + 8
     max_lines = max(4, int((max_height - 82) / line_h))
     lines = _prepare_code_lines(code, font, max_width, draw, max_lines)
-    height = min(max_height, 60 + len(lines) * line_h + 22)
+    height = min(max_height, 64 + len(lines) * line_h + 24)
     return font, lines, height, line_h
 
 
-def _draw_header(draw, question_data, font_path, lang_color):
+def _draw_header(draw, question_data, font_path, primary_color, secondary_color):
     question_id = int(question_data.get("id", 1))
     language = question_data.get("language", "Coding")
 
@@ -160,59 +173,74 @@ def _draw_header(draw, question_data, font_path, lang_color):
     font_title = load_font(font_path, 72)
     font_subtitle = load_font(font_path, 28)
 
-    pill = (MARGIN_X, 72, MARGIN_X + 220, 124)
-    _rounded(draw, pill, 18, lang_color)
+    # PART Pill Capsule with border glow
+    pill = (MARGIN_X, 72, MARGIN_X + 220, 126)
+    _rounded(draw, pill, 20, secondary_color, outline=primary_color, width=2)
     _center_text(draw, pill, f"PART {question_id:03d}", font_meta, (255, 255, 255, 255))
 
-    draw.text((MARGIN_X, 150), f"{language} Quiz", font=font_title, fill=(255, 255, 255, 255))
-    draw.text((MARGIN_X, 224), "Read the code. Pick the output.", font=font_subtitle, fill=(196, 203, 218, 235))
+    # Language Quiz Title
+    draw.text((MARGIN_X, 152), f"{language} Quiz", font=font_title, fill=(255, 255, 255, 255))
+    draw.text((MARGIN_X, 228), "⚡ Read the code. Pick the output.", font=font_subtitle, fill=(200, 210, 230, 240))
 
 
-def _draw_code_box(draw, rect, code_lines, font, line_h, lang_color):
+def _draw_code_box(draw, rect, code_lines, font, line_h, primary_color, filename):
     x1, y1, x2, y2 = rect
-    _rounded(draw, rect, 22, (7, 10, 18, 244), (255, 255, 255, 34), 1)
-    _rounded(draw, (x1, y1, x2, y1 + 52), 22, (18, 23, 35, 255))
-    draw.rectangle((x1, y1 + 30, x2, y1 + 52), fill=(18, 23, 35, 255))
+    # IDE Outer Window container
+    _rounded(draw, rect, 24, (6, 9, 17, 250), (255, 255, 255, 40), 1)
+    
+    # IDE Header Bar
+    header_h = 56
+    _rounded(draw, (x1, y1, x2, y1 + header_h), 24, (16, 21, 33, 255))
+    draw.rectangle((x1, y1 + 32, x2, y1 + header_h), fill=(16, 21, 33, 255))
 
-    dot_y = y1 + 26
+    # macOS Window Dots (Red, Yellow, Green)
+    dot_y = y1 + 28
     for index, color in enumerate([(255, 95, 86, 255), (255, 189, 46, 255), (39, 201, 63, 255)]):
         cx = x1 + 28 + index * 24
         draw.ellipse((cx - 6, dot_y - 6, cx + 6, dot_y + 6), fill=color)
 
-    label_font = load_font(os.path.join("assets", "fonts", "font.ttf"), 21)
-    draw.text((x2 - 154, y1 + 13), "SNIPPET", font=label_font, fill=(137, 148, 170, 220))
-    draw.rectangle((x1, y1 + 52, x2, y1 + 56), fill=lang_color)
+    # Code File Tab Name (e.g. main.py)
+    tab_font = load_font(os.path.join("assets", "fonts", "font.ttf"), 22)
+    tab_rect = (x1 + 115, y1 + 10, x1 + 260, y1 + 46)
+    _rounded(draw, tab_rect, 10, (26, 33, 50, 255), outline=primary_color, width=1)
+    _center_text(draw, tab_rect, filename, tab_font, (220, 230, 250, 255))
 
-    code_x = x1 + 28
-    code_y = y1 + 76
+    # Accent Neon separator line
+    draw.rectangle((x1, y1 + header_h, x2, y1 + header_h + 3), fill=primary_color)
+
+    # Code Lines
+    code_x = x1 + 32
+    code_y = y1 + header_h + 24
     for line in code_lines:
-        draw.text((code_x, code_y), line, font=font, fill=(235, 239, 248, 255))
+        draw.text((code_x, code_y), line, font=font, fill=(240, 244, 255, 255))
         code_y += line_h
 
 
-def _draw_options(draw, options, font_path, lang_color, option_y):
+def _draw_options(draw, options, font_path, primary_color, secondary_color, option_y):
     option_letters = ["A", "B", "C", "D"]
     option_x1 = MARGIN_X
     option_x2 = CANVAS_W - MARGIN_X
-    option_h = 134
-    option_gap = 28
-    text_left = option_x1 + 124
+    option_h = 136
+    option_gap = 26
+    text_left = option_x1 + 128
     text_right = option_x2 - 32
 
     for i, option in enumerate(options[:4]):
         y1 = option_y + i * (option_h + option_gap)
         y2 = y1 + option_h
-        fill = (13, 17, 28, 232)
-        outline = (255, 255, 255, 42)
-        _draw_panel(draw, (option_x1, y1, option_x2, y2), radius=24, fill=fill, outline=outline)
+        fill = (14, 19, 32, 238)
+        outline = (255, 255, 255, 48)
+        _draw_panel(draw, (option_x1, y1, option_x2, y2), radius=26, fill=fill, outline=outline, width=1)
 
-        letter_rect = (option_x1 + 28, y1 + 34, option_x1 + 86, y1 + 92)
-        _rounded(draw, letter_rect, 17, lang_color, None, 1)
-        letter_font = load_font(font_path, 34)
+        # Option Letter Badge (A, B, C, D)
+        letter_rect = (option_x1 + 26, y1 + 32, option_x1 + 92, y1 + 98)
+        _rounded(draw, letter_rect, 18, secondary_color, outline=primary_color, width=2)
+        letter_font = load_font(font_path, 36)
         _center_text(draw, letter_rect, option_letters[i], letter_font, (255, 255, 255, 255))
 
+        # Option Text
         max_width = text_right - text_left
-        option_font, lines = _fit_wrapped_font(option, font_path, draw, max_width, 33, 24, 2)
+        option_font, lines = _fit_wrapped_font(option, font_path, draw, max_width, 34, 24, 2)
         line_h = _line_height(draw, option_font) + 8
         block_h = len(lines) * line_h - 8
         text_y = y1 + (option_h - block_h) / 2
@@ -243,12 +271,12 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
     _draw_readability_scrim(draw)
 
     language = question_data.get("language", "Coding")
-    lang_color = _language_color(language)
-    _draw_header(draw, question_data, font_path, lang_color)
+    primary_color, secondary_color = _language_color(language)
+    _draw_header(draw, question_data, font_path, primary_color, secondary_color)
 
     panel_x1 = MARGIN_X
     panel_x2 = CANVAS_W - MARGIN_X
-    panel_y1 = 310
+    panel_y1 = 312
     panel_y2 = 1068
     inner_x1 = panel_x1 + 42
     inner_x2 = panel_x2 - 42
@@ -270,10 +298,13 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
     q_block_h = len(q_lines) * q_line_h - 12
     content_h = 54 + q_block_h + 34 + code_h + 44
     panel_y2 = min(1068, panel_y1 + content_h)
-    _draw_panel(draw, (panel_x1, panel_y1, panel_x2, panel_y2), radius=30)
+    
+    # Main Question Card Panel with glowing accent border
+    _draw_panel(draw, (panel_x1, panel_y1, panel_x2, panel_y2), radius=30, outline=(255, 255, 255, 55), width=2)
 
+    # Accent Neon Bar on left
     accent_rect = (panel_x1, panel_y1, panel_x1 + 10, panel_y2)
-    draw.rectangle(accent_rect, fill=lang_color)
+    draw.rectangle(accent_rect, fill=primary_color)
 
     y = panel_y1 + 48
     for line in q_lines:
@@ -281,23 +312,25 @@ def generate_graphics(question_data, output_img_path, transparent_bg=False):
         y += q_line_h
 
     y += 22
-    _draw_code_box(draw, (inner_x1, y, inner_x2, y + code_h), code_lines, code_font, code_line_h, lang_color)
+    filename = _get_filename_for_lang(language)
+    _draw_code_box(draw, (inner_x1, y, inner_x2, y + code_h), code_lines, code_font, code_line_h, primary_color, filename)
 
-    option_start_y = max(panel_y2 + 54, 940)
+    option_start_y = max(panel_y2 + 50, 940)
     option_start_y = min(option_start_y, 1134)
-    _draw_options(draw, question_data.get("options", []), font_path, lang_color, option_start_y)
+    _draw_options(draw, question_data.get("options", []), font_path, primary_color, secondary_color, option_start_y)
 
+    # Floating CTA Pill Banner at bottom
+    cta_rect = (MARGIN_X + 110, 1800, CANVAS_W - MARGIN_X - 110, 1860)
+    _rounded(draw, cta_rect, 20, (14, 20, 34, 240), outline=primary_color, width=2)
     footer_font = load_font(font_path, 25)
-    footer = "Comment A, B, C, or D"
-    width, _, _ = _text_size(draw, footer, footer_font)
-    draw.text(((CANVAS_W - width) / 2, 1814), footer, font=footer_font, fill=(205, 212, 228, 230))
+    _center_text(draw, cta_rect, "💬 COMMENT YOUR ANSWER (A, B, C, D)", footer_font, (255, 255, 255, 255))
 
-    # 11. Draw Watermark Cover Icon to hide Gemini logo (centered over x=935, y=1773)
+    # Watermark Cover Icon to hide Gemini logo (centered over x=935, y=1773)
     cover_path = os.path.join("assets", "watermark_cover.png")
     if os.path.exists(cover_path):
         try:
             cover_img = Image.open(cover_path).convert("RGBA")
-            cover_size = 140  # Rescaled to safely cover the watermark with a larger neat border
+            cover_size = 140
             cover_img = cover_img.resize((cover_size, cover_size), Image.Resampling.LANCZOS)
             x_pos = 935 - (cover_size // 2)
             y_pos = 1773 - (cover_size // 2)
