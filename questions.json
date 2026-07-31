@@ -661,5 +661,330 @@
       "TypeError"
     ],
     "answer": "B"
+  },
+  {
+    "id": 176,
+    "language": "Python",
+    "question": "What is returned by zip when sequences have uneven lengths?",
+    "code": "print(list(zip([1, 2], ['a'])))",
+    "options": [
+      "[(1, 'a')]",
+      "[(1, 'a'), (2, None)]",
+      "ValueError",
+      "[(1, 'a'), (2, '')]"
+    ],
+    "answer": "[(1, 'a')]"
+  },
+  {
+    "id": 177,
+    "language": "Python",
+    "question": "What does dict.pop return and how does it change dict size?",
+    "code": "x = {'a': 1, 'b': 2}\nprint(x.pop('a'), len(x))",
+    "options": [
+      "1 1",
+      "1 2",
+      "None 1",
+      "KeyError"
+    ],
+    "answer": "1 1"
+  },
+  {
+    "id": 178,
+    "language": "Python",
+    "question": "What does str.find return when substring is missing?",
+    "code": "print('hello'.find('z'))",
+    "options": [
+      "-1",
+      "False",
+      "ValueError",
+      "None"
+    ],
+    "answer": "-1"
+  },
+  {
+    "id": 179,
+    "language": "Python",
+    "question": "What is printed by floor division on a negative number?",
+    "code": "print(10 // -3)",
+    "options": [
+      "-4",
+      "-3",
+      "-3.33",
+      "ValueError"
+    ],
+    "answer": "-4"
+  },
+  {
+    "id": 180,
+    "language": "Python",
+    "question": "What is the boolean value of float 0.0 vs integer -1?",
+    "code": "print(bool(0.0), bool(-1))",
+    "options": [
+      "False True",
+      "False False",
+      "True True",
+      "True False"
+    ],
+    "answer": "False True"
+  },
+  {
+    "id": 181,
+    "language": "Python",
+    "question": "What is produced by negative slice step on a tuple?",
+    "code": "x = (1, 2, 3)\nprint(x[::-1])",
+    "options": [
+      "(3, 2, 1)",
+      "[3, 2, 1]",
+      "(1, 2, 3)",
+      "TypeError"
+    ],
+    "answer": "(3, 2, 1)"
+  },
+  {
+    "id": 182,
+    "language": "Python",
+    "question": "What is printed by floating point specifier formatting?",
+    "code": "print('{:.2f}'.format(3.14159))",
+    "options": [
+      "3.14",
+      "3.15",
+      "3.14159",
+      "ValueError"
+    ],
+    "answer": "3.14"
+  },
+  {
+    "id": 183,
+    "language": "Python",
+    "question": "What dictionary is created by dict.fromkeys?",
+    "code": "print(dict.fromkeys(['a', 'b'], 0))",
+    "options": [
+      "{'a': 0, 'b': 0}",
+      "{'a': 'b': 0}",
+      "[('a', 0), ('b', 0)]",
+      "TypeError"
+    ],
+    "answer": "{'a': 0, 'b': 0}"
+  },
+  {
+    "id": 184,
+    "language": "Java",
+    "question": "What is the length of a string repeated 0 times?",
+    "code": "System.out.println(\"a\".repeat(0).length());",
+    "options": [
+      "0",
+      "1",
+      "IllegalArgumentException",
+      "Compilation Error"
+    ],
+    "answer": "0"
+  },
+  {
+    "id": 185,
+    "language": "Java",
+    "question": "What default value initializes primitive int arrays?",
+    "code": "int[] a = new int[5];\nSystem.out.println(a[0]);",
+    "options": [
+      "0",
+      "null",
+      "Garbage value",
+      "Compilation Error"
+    ],
+    "answer": "0"
+  },
+  {
+    "id": 186,
+    "language": "Java",
+    "question": "What does Math.min return for 0.0 vs -0.0?",
+    "code": "System.out.println(Math.min(0.0, -0.0));",
+    "options": [
+      "-0.0",
+      "0.0",
+      "NaN",
+      "Compilation Error"
+    ],
+    "answer": "-0.0"
+  },
+  {
+    "id": 187,
+    "language": "Java",
+    "question": "What is returned by Character.toUpperCase('a')?",
+    "code": "System.out.println(Character.toUpperCase('a'));",
+    "options": [
+      "A",
+      "a",
+      "65",
+      "Compilation Error"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 188,
+    "language": "Java",
+    "question": "What is returned by String.trim on whitespace padding?",
+    "code": "String s = \"  hi  \";\nSystem.out.println(s.trim());",
+    "options": [
+      "hi",
+      "  hi  ",
+      "hi  ",
+      "Compilation Error"
+    ],
+    "answer": "hi"
+  },
+  {
+    "id": 189,
+    "language": "Java",
+    "question": "What string representation is returned for decimal 255?",
+    "code": "System.out.println(Integer.toHexString(255));",
+    "options": [
+      "ff",
+      "FF",
+      "255",
+      "Compilation Error"
+    ],
+    "answer": "ff"
+  },
+  {
+    "id": 190,
+    "language": "Java",
+    "question": "Does Boolean.valueOf return cached Boolean constants?",
+    "code": "System.out.println(Boolean.valueOf(\"true\") == Boolean.TRUE);",
+    "options": [
+      "true",
+      "false",
+      "Compilation Error",
+      "NullPointerException"
+    ],
+    "answer": "true"
+  },
+  {
+    "id": 191,
+    "language": "C++",
+    "question": "What is the size in bytes of a bool expression?",
+    "code": "int x = 5;\nstd::cout << sizeof(x == 5);",
+    "options": [
+      "1",
+      "4",
+      "8",
+      "Compilation Error"
+    ],
+    "answer": "1"
+  },
+  {
+    "id": 192,
+    "language": "C++",
+    "question": "What character is returned by std::string::back()?",
+    "code": "std::string s = \"abc\";\nstd::cout << s.back();",
+    "options": [
+      "c",
+      "a",
+      "abc",
+      "Compilation Error"
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 193,
+    "language": "C++",
+    "question": "What is the value of variable 'a' after std::swap?",
+    "code": "int a = 10, b = 20;\nstd::swap(a, b);\nstd::cout << a;",
+    "options": [
+      "20",
+      "10",
+      "0",
+      "Compilation Error"
+    ],
+    "answer": "20"
+  },
+  {
+    "id": 194,
+    "language": "C++",
+    "question": "What does bitor keyword evaluate to?",
+    "code": "std::cout << (bitor 4 1);",
+    "options": [
+      "5",
+      "4",
+      "1",
+      "Compilation Error"
+    ],
+    "answer": "5"
+  },
+  {
+    "id": 195,
+    "language": "C++",
+    "question": "What is the initial value of elements in value-initialized array?",
+    "code": "int arr[3] = {};\nstd::cout << arr[0];",
+    "options": [
+      "0",
+      "Undefined behavior",
+      "Garbage value",
+      "Compilation Error"
+    ],
+    "answer": "0"
+  },
+  {
+    "id": 196,
+    "language": "C++",
+    "question": "What is returned by std::string::length()?",
+    "code": "std::cout << std::string(\"test\").length();",
+    "options": [
+      "4",
+      "5",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "4"
+  },
+  {
+    "id": 197,
+    "language": "Python",
+    "question": "What is the type of a range generator object?",
+    "code": "print(type(range(5)))",
+    "options": [
+      "<class 'range'>",
+      "<class 'list'>",
+      "<class 'generator'>",
+      "<class 'tuple'>"
+    ],
+    "answer": "<class 'range'>"
+  },
+  {
+    "id": 198,
+    "language": "Python",
+    "question": "Can str.startswith accept a tuple of prefix choices?",
+    "code": "print('Python'.startswith(('P', 'J')))",
+    "options": [
+      "True",
+      "False",
+      "TypeError",
+      "ValueError"
+    ],
+    "answer": "True"
+  },
+  {
+    "id": 199,
+    "language": "Java",
+    "question": "What does Objects.equals return when both arguments are null?",
+    "code": "System.out.println(Objects.equals(null, null));",
+    "options": [
+      "true",
+      "false",
+      "NullPointerException",
+      "Compilation Error"
+    ],
+    "answer": "true"
+  },
+  {
+    "id": 200,
+    "language": "C++",
+    "question": "What does the C++ 'and' alternative operator keyword evaluate to?",
+    "code": "std::cout << (10 > 5 and 5 > 1);",
+    "options": [
+      "1",
+      "true",
+      "Compilation Error",
+      "Undefined Behavior"
+    ],
+    "answer": "1"
   }
 ]
