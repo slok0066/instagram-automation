@@ -29,8 +29,8 @@ def generate_video(question_data, output_video_path):
         
     generate_graphics(question_data, temp_img_path, transparent_bg=has_video_bg)
     
-    # Select random float duration between 6.0 and 7.0 seconds
-    duration = round(random.uniform(6.0, 7.0), 2)
+    # Select random float duration between 6.0 and 7.0 seconds using SystemRandom
+    duration = round(random.SystemRandom().uniform(6.0, 7.0), 2)
     print(f"[*] Chosen video duration: {duration} seconds")
     
     print("[*] Compositing video timeline using MoviePy...")
@@ -76,7 +76,7 @@ def generate_video(question_data, output_video_path):
                     bg_clip = bg_clip.loop(duration=duration)
             else:
                 max_start = max(0.0, bg_clip.duration - duration)
-                start_time = round(random.uniform(0, max_start), 2) if max_start > 0 else 0.0
+                start_time = round(random.SystemRandom().uniform(0, max_start), 2) if max_start > 0 else 0.0
                 print(f"[*] Cutting background video: segment from {start_time}s to {start_time + duration}s")
                 if hasattr(bg_clip, 'subclipped'):
                     bg_clip = bg_clip.subclipped(start_time, start_time + duration)
@@ -132,7 +132,7 @@ def generate_video(question_data, output_video_path):
                         audio_clip = audio.fx(loop, duration=duration)
                 else:
                     max_start = max(0.0, audio.duration - duration)
-                    start_time = round(random.uniform(0, max_start), 2) if max_start > 0 else 0.0
+                    start_time = round(random.SystemRandom().uniform(0, max_start), 2) if max_start > 0 else 0.0
                     print(f"[*] Cutting sound block: start at {start_time}s to {start_time + duration}s")
                     if hasattr(audio, 'subclipped'):
                         audio_clip = audio.subclipped(start_time, start_time + duration)
